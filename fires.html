@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Forest</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="text/javascript" src="https://d3js.org/d3.v6.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
+    <script src="scripts/fires.js"></script>
+    <link rel="stylesheet" href="styles/chart.css">
+  </head>
+  <body class="bg-green-100">
+    <!-- Navbar -->
+    <div class="pt-4">
+      <nav
+      class="mx-auto block w-full max-w-screen-xl rounded-xl border border-white/80 bg-white bg-opacity-80 py-2 px-4 text-white shadow-md backdrop-blur-2xl backdrop-saturate-200 lg:px-8 lg:py-4"
+      >
+      <div>
+        <div
+          class="container mx-auto flex items-center content-center justify-between text-green-900"
+        >
+          <a
+            href="index.html"
+            class="mr-4 block cursor-pointer py-1.5 font-sans text-sm font-normal leading-normal text-inherit antialiased hover:text-blue lg:mr-6 lg:py-2 lg:text-2"
+          >
+            <span>Forest</span>
+          </a>
+          <ul class="hidden items-center gap-6 lg:flex">
+            <li
+              class="block p-1 font-sans text-sm font-normal leading-normal text-inherit antialiased"
+            >
+              <a class="flex items-center" href="products_data.html"> Products Data </a>
+            </li>
+            <li
+              class="block p-1 font-sans text-sm font-normal leading-normal text-inherit antialiased"
+            >
+              <a class="flex items-center" href="products_compare.html"> Products Compare </a>
+            </li>
+            <li
+              class="block p-1 font-sans text-sm font-normal leading-normal text-inherit antialiased"
+            >
+              <a class="flex items-center" href="#"> Fires </a>
+            </li>
+          </ul>
+        </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+    <!-- End Navbar -->
+
+    <!-- Content -->
+    <script>
+        function fetchDataAndVisualize(filePath) {
+            return fetch(filePath)
+              .then(response => response.arrayBuffer())
+              .then(data => {
+                  const workbook = XLSX.read(new Uint8Array(data), { type: 'array' });
+                  const sheetName = workbook.SheetNames[0];
+                  const sheet = workbook.Sheets[sheetName];
+                  const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+                  console.log(jsonData);
+                  return jsonData;
+              })
+              .catch(error => console.error('Error fetching the file:', error));
+          }
+
+        // Function to create the scatter plot
+        function createScatterPlot(data) {
+            // Set up dimensions for the scatter plot
+            const width = 500;
+            const height = 400;
+            const margin = { top: 20, right: 20, bottom: 40, left: 40 };
+
+            // Create SVG container for the scatter plot
+            const svg = d3.select('#scatter-plot')
+                .append('svg')
+                .attr('width', width + margin.left + margin.right)
+                .attr('height', height + margin.top + margin.bottom)
+                .append('g')
+                .attr('transform', `translate(${margin.left}, ${margin.top})`);
+
+            // Create scales for X and Y axes
+            const xScale = d3.scaleLinear()
+                .domain([0, d3.max(data, d => +d['Incêndios rurais'])])
+                .range([0, width]);
+
+            const yScale = d3.scaleLinear()
+                .domain([0, d3.max(data, d => +d['Área ardida'])])
+                .range([height, 0]);
+
+            // Create X and Y axes
+            const xAxis = d3.axisBottom(xScale);
+            const yAxis = d3.axisLeft(yScale);
+
+            svg.append('g')
+                .attr('class', 'x-axis')
+                .attr('transform', `translate(0, ${height})`)
+                .call(xAxis);
+
+            svg.append('g')
+                .attr('class', 'y-axis')
+                .call(yAxis);
+
+            // Create scatter plot points
+            svg.selectAll('.scatter-point')
+                .data(data)
+                .enter()
+                .append('circle')
+                .attr('class', 'scatter-point')
+                .attr('cx', d => xScale(+d['Incêndios rurais']))
+                .attr('cy', d => yScale(+d['Área ardida']))
+                .attr('r', 5);  // Adjust the radius based on your preference
+        }
+
+        // Fetch and visualize the data
+        fetchDataAndVisualize('data/Área-ardida-e-incêndios-rurais.xlsx');
+    </script>
+  </body>
+</html>

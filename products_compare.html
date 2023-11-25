@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Forest</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="text/javascript" src="https://d3js.org/d3.v6.js"></script>
+    <script src="scripts/products_compare.js"></script>
+    <link rel="stylesheet" href="styles/chart.css">
+  </head>
+  <body class="bg-green-100">
+    <!-- Navbar -->
+    <div class="pt-4">
+      <nav
+      class="mx-auto block w-full max-w-screen-xl rounded-xl border border-white/80 bg-white bg-opacity-80 py-2 px-4 text-white shadow-md backdrop-blur-2xl backdrop-saturate-200 lg:px-8 lg:py-4"
+      >
+      <div>
+        <div
+          class="container mx-auto flex items-center content-center justify-between text-green-900"
+        >
+          <a
+            href="index.html"
+            class="mr-4 block cursor-pointer py-1.5 font-sans text-sm font-normal leading-normal text-inherit antialiased hover:text-blue lg:mr-6 lg:py-2 lg:text-2"
+          >
+            <span>Forest</span>
+          </a>
+          <ul class="hidden items-center gap-6 lg:flex">
+            <li
+              class="block p-1 font-sans text-sm font-normal leading-normal text-inherit antialiased"
+            >
+              <a class="flex items-center" href="products_data.html"> Products Data </a>
+            </li>
+            <li
+              class="block p-1 font-sans text-sm font-normal leading-normal text-inherit antialiased"
+            >
+              <a class="flex items-center" href="#"> Products Compare </a>
+            </li>
+            <li
+              class="block p-1 font-sans text-sm font-normal leading-normal text-inherit antialiased"
+            >
+              <a class="flex items-center" href="fires.html"> Fires </a>
+            </li>
+          </ul>
+        </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+    <!-- End Navbar -->
+
+    <!-- Content -->
+    <div class="center-wrapper">
+        <div id="chart-container">
+            <div id="chart" style="display: flex; justify-content: center; align-items: center;"></div>
+
+            <!-- component -->
+            <!-- This is an example component -->
+            <div id="yearsButton" class="max-w-lg mx-auto pl-8">
+                
+                <fieldset class="mb-5">
+                    <legend class="sr-only">
+                        Years
+                    </legend>
+                    <div class="flex items-center mb-4">
+                        <input id="year-option-1" type="radio" name="years" value="2013" class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300" aria-labelledby="year-option-1" aria-describedby="year-option-1" checked="">
+                        <label for="year-option-1" class="text-sm font-medium text-gray-900 ml-2 block">
+                        2013
+                        </label>
+                    </div>
+                    <div class="flex items-center mb-4">
+                        <input id="year-option-2" type="radio" name="years" value="2014" class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300" aria-labelledby="year-option-2" aria-describedby="year-option-2">
+                        <label for="year-option-2" class="text-sm font-medium text-gray-900 ml-2 block">
+                            2014
+                        </label>
+                    </div>
+                    <div class="flex items-center mb-4">
+                        <input id="year-option-3" type="radio" name="years" value="2015" class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300" aria-labelledby="year-option-3" aria-describedby="year-option-3">
+                        <label for="year-option-3" class="text-sm font-medium text-gray-900 ml-2 block">
+                            2015
+                        </label>
+                    </div>
+                    <div class="flex items-center mb-4">
+                        <input id="year-option-4" type="radio" name="years" value="2016" class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300" aria-labelledby="year-option-4" aria-describedby="year-option-4">
+                        <label for="year-option-4" class="text-sm font-medium text-gray-900 ml-2 block">
+                            2016
+                        </label>
+                    </div>
+                    <div class="flex items-center mb-4">
+                        <input id="year-option-4" type="radio" name="years" value="2017" class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300" aria-labelledby="year-option-4" aria-describedby="year-option-4">
+                        <label for="year-option-4" class="text-sm font-medium text-gray-900 ml-2 block">
+                            2017
+                        </label>
+                    </div>
+                    <div class="flex items-center mb-4">
+                        <input id="year-option-4" type="radio" name="years" value="2018" class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300" aria-labelledby="year-option-4" aria-describedby="year-option-4">
+                        <label for="year-option-4" class="text-sm font-medium text-gray-900 ml-2 block">
+                            2018
+                        </label>
+                    </div>
+                    <div class="flex items-center mb-4">
+                        <input id="year-option-4" type="radio" name="years" value="2019" class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300" aria-labelledby="year-option-4" aria-describedby="year-option-4">
+                        <label for="year-option-4" class="text-sm font-medium text-gray-900 ml-2 block">
+                            2019
+                        </label>
+                    </div>
+                    <div class="flex items-center mb-4">
+                        <input id="year-option-4" type="radio" name="years" value="2020" class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300" aria-labelledby="year-option-4" aria-describedby="year-option-4">
+                        <label for="year-option-4" class="text-sm font-medium text-gray-900 ml-2 block">
+                            2020
+                        </label>
+                    </div>
+                    <div class="flex items-center mb-4">
+                        <input id="year-option-4" type="radio" name="years" value="2021" class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300" aria-labelledby="year-option-4" aria-describedby="year-option-4">
+                        <label for="year-option-4" class="text-sm font-medium text-gray-900 ml-2 block">
+                            2021
+                        </label>
+                    </div>
+                    <div class="flex items-center mb-4">
+                        <input id="year-option-4" type="radio" name="years" value="2022" class="h-4 w-4 border-gray-300 focus:ring-2 focus:ring-blue-300" aria-labelledby="year-option-4" aria-describedby="year-option-4">
+                        <label for="year-option-4" class="text-sm font-medium text-gray-900 ml-2 block">
+                            2022
+                        </label>
+                    </div>
+                </fieldset>
+
+            </div>
+
+            <script src="https://unpkg.com/@themesberg/flowbite@latest/dist/flowbite.bundle.js"></script>
+        </div>
+    </div>
+    <script>
+        // Function to get the default selected product
+        function getDefaultSelectedProduct() {
+            const defaultSelectedRadio = document.querySelector('input[name="years"]:checked');
+            return defaultSelectedRadio ? defaultSelectedRadio.value : "2013";
+        }
+
+        // Example: Attach a click event listener to a button with ID 'selectProductButton'
+        const selectProductButton = document.getElementById('yearsButton');
+        selectProductButton.addEventListener('click', function () {
+            // Get the selected product value
+            const selectedProduct = document.querySelector('input[name="years"]:checked').value;
+
+            // Call the lineChart function with the selected product
+            lineChart(selectedProduct);
+        });
+
+        // Trigger the lineChart function with the default selected product on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            const defaultProduct = getDefaultSelectedProduct();
+            if (defaultProduct) {
+                lineChart(defaultProduct);
+            }
+        });
+    </script>
+  </body>
+</html>

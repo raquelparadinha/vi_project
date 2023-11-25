@@ -1,22 +1,19 @@
 function fetchDataAndVisualize(filePath) {
-    // Path to your Excel file relative to your HTML file
-    // const filePath = 'data/Exportações-dos-produtos-de-origem-florestal.xlsx';
     return fetch(filePath)
         .then(response => response.arrayBuffer())
         .then(data => {
             const workbook = XLSX.read(new Uint8Array(data), { type: 'array' });
-            // Assuming there is only one sheet in the Excel file
             const sheetName = workbook.SheetNames[0];
             const sheet = workbook.Sheets[sheetName];
-            // Convert sheet data to JSON
             const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
-            // Now you have jsonData, you can use D3.js to visualize it
             return jsonData;
         })
         .catch(error => console.error('Error fetching the file:', error));
 }
 
 function lineChart(product) {
+    document.getElementById('chart').innerHTML = '';
+    
     const dataSources = [
         'data/Exportações-dos-produtos-de-origem-florestal.xlsx',
         'data/Importações-dos-produtos-de-origem-florestal.xlsx',
@@ -50,9 +47,9 @@ function visualizeLinePlot(datasets, titles, product) {
     console.log('Totals: ', totalData);
 
     // Set up the SVG and its dimensions
-    const margin = { top: 100, right: 20, bottom: 30, left: 50 };
-    const width = 1000 - margin.left - margin.right;
-    const height = 800 - margin.top - margin.bottom;
+    const margin = { top: 100, right: 20, bottom: 30, left: 60 };
+    const width = 900 - margin.left - margin.right;
+    const height = 700 - margin.top - margin.bottom;
 
     // Create an SVG container
     const svg = d3.select("#chart")
@@ -109,7 +106,7 @@ function visualizeLinePlot(datasets, titles, product) {
         .attr("y", 0 - margin.top / 2)
         .attr("text-anchor", "middle")
         .style("font-size", "16px")
-        .text(`Line Plot Comparison - ${product}`);
+        .text(`Comparison of Exportation, Importation and Balance (Thousands of Euros)  - ${product}`);
 }
 
 // Function to get different colors for each line
