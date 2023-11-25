@@ -6,7 +6,8 @@
         <title>Forest</title>
         <script src="https://cdn.tailwindcss.com"></script>
         <script type="text/javascript" src="https://d3js.org/d3.v6.js"></script>
-        <!-- <script src="products.js"></script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
+        <script src="scripts/products.js"></script>
     </head>
     <body class="bg-green-100">
         <!-- Navbar -->
@@ -47,12 +48,10 @@
         <!-- End Navbar -->
     
         <!-- Content -->
+        <div id="chart" style="display: flex; justify-content: center; align-items: center;"></div>
+
         <script>
-            d3.XLSX('data/Exportações-dos-produtos-de-origem-florestal.xlsx')
-                .then(data => {
-                console.log(data);
-                })
-                .catch(function(err){console.log(err)});
+            lineChart("Madeira serrada");
         </script>
     </body>
 </html>
