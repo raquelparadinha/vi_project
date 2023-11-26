@@ -60,8 +60,14 @@ function visualizeLinePlot(datasets, titles, product) {
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     // Set up the scales
-    const xScale = d3.scaleLinear().domain([d3.min(years), d3.max(years)]).range([0, width]);
-    const yScale = d3.scaleLinear().domain([d3.min(totalData), d3.max(totalData)]).range([height, 0]);
+    const xScale = d3.scaleLinear()
+        .domain([d3.min(years), d3.max(years)])
+        .range([0, width]);
+
+    const yScale = d3.scaleLinear()
+        .domain([d3.min(totalData), d3.max(totalData)])
+        .range([height, 0]);
+        
     console.log('yScale domain: ', yScale.domain());
     // Define the line generator
     let line = d3.line()
