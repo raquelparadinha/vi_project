@@ -6,6 +6,7 @@
     <title>Forest</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script type="text/javascript" src="https://d3js.org/d3.v6.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
     <script src="scripts/products_compare.js"></script>
     <link rel="stylesheet" href="styles/chart.css">
   </head>
@@ -130,29 +131,7 @@
         </div>
     </div>
     <script>
-        // Function to get the default selected product
-        function getDefaultSelectedProduct() {
-            const defaultSelectedRadio = document.querySelector('input[name="years"]:checked');
-            return defaultSelectedRadio ? defaultSelectedRadio.value : "2013";
-        }
-
-        // Example: Attach a click event listener to a button with ID 'selectProductButton'
-        const selectProductButton = document.getElementById('yearsButton');
-        selectProductButton.addEventListener('click', function () {
-            // Get the selected product value
-            const selectedProduct = document.querySelector('input[name="years"]:checked').value;
-
-            // Call the lineChart function with the selected product
-            lineChart(selectedProduct);
-        });
-
-        // Trigger the lineChart function with the default selected product on page load
-        document.addEventListener('DOMContentLoaded', function () {
-            const defaultProduct = getDefaultSelectedProduct();
-            if (defaultProduct) {
-                lineChart(defaultProduct);
-            }
-        });
+        radarPlot(2013);
     </script>
   </body>
 </html>

@@ -133,7 +133,7 @@ function visualizeScatterPlot(data) {
     svg.append('text')
         .attr('class', 'axis-label')
         .attr('x', width / 2 - 100)
-        .attr('y', height + margin.top + 5)  // Adjust label position
+        .attr('y', height + margin.top)  // Adjust label position
         .text('Total Number of Fires');
 
     svg.append('text')
