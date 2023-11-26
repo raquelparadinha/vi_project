@@ -58,8 +58,8 @@ function visualizeScatterPlot(data) {
     console.log(allData);
 
     // Set up dimensions for the scatter plot
-    const width = 900;
-    const height = 700;
+    const width = 800;
+    const height = 600;
     const margin = { top: 50, right: 20, bottom: 30, left: 60 };
 
     
