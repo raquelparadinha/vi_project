@@ -1,98 +1,108 @@
 <!DOCTYPE html>
 <html lang="en-US">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Forest</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script type="text/javascript" src="https://d3js.org/d3.v6.js"></script>
-    <link rel="stylesheet" href="styles/chart.css">
-  </head>
-  <body class="bg-green-100">
-    <!-- Navbar -->
-    <div class="pt-4">
-      <nav
-      class="mx-auto block w-full max-w-screen-xl rounded-xl border border-white/80 bg-white bg-opacity-80 py-2 px-4 text-white shadow-md backdrop-blur-2xl backdrop-saturate-200 lg:px-8 lg:py-4"
-      >
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>Forests of Portugal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="text/javascript" src="https://d3js.org/d3.v6.js"></script>
+  <link rel="stylesheet" href="styles/chart.css">
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+</head>
+
+<body class="bg-green-100">
+  <!-- Navbar -->
+  <div class="pt-4">
+    <nav
+      class="mx-auto block w-full max-w-screen-xl rounded-xl border border-white/80 bg-white bg-opacity-80 py-2 px-4 text-white shadow-md backdrop-blur-2xl backdrop-saturate-200 lg:px-8 lg:py-4">
       <div>
-        <div
-          class="container mx-auto flex items-center content-center justify-between text-green-900"
-        >
-          <a
-            href="#"
-            class="mr-4 block cursor-pointer py-1.5 font-sans text-sm font-normal leading-normal text-inherit antialiased hover:text-blue lg:mr-6 lg:py-2 lg:text-2"
-          >
-            <span>Forest</span>
+        <div class="container mx-auto flex items-center content-center justify-between text-green-900">
+          <a href="#"
+            class="mr-4 block cursor-pointer py-1.5 font-sans text-sm font-normal leading-normal text-inherit antialiased hover:text-blue lg:mr-6 lg:py-2 lg:text-2">
+            <span>Home</span>
           </a>
           <ul class="hidden items-center gap-6 lg:flex">
-            <li
-              class="block p-1 font-sans text-sm font-normal leading-normal text-inherit antialiased"
-            >
+            <li class="block p-1 font-sans text-sm font-normal leading-normal text-inherit antialiased">
               <a class="flex items-center" href="products_data.html"> Products Data </a>
             </li>
-            <li
-              class="block p-1 font-sans text-sm font-normal leading-normal text-inherit antialiased"
-            >
+            <li class="block p-1 font-sans text-sm font-normal leading-normal text-inherit antialiased">
               <a class="flex items-center" href="products_compare.html"> Products Compare </a>
             </li>
-            <li
-              class="block p-1 font-sans text-sm font-normal leading-normal text-inherit antialiased"
-            >
+            <li class="block p-1 font-sans text-sm font-normal leading-normal text-inherit antialiased">
               <a class="flex items-center" href="fires.html"> Fires </a>
             </li>
           </ul>
         </div>
-        </div>
       </div>
-    </nav>
   </div>
-    <!-- End Navbar -->
+  </nav>
+  </div>
+  <!-- End Navbar -->
 
-    <!-- Content -->
-    <!-- component -->
-    <!-- component -->
+  <!-- Content -->
+  <!-- component -->
+  <!-- component -->
   <div class="center-wrapper">
     <div id="chart-container">
-      <div class="relative flex-[1_auto] flex flex-col break-words min-w-0 bg-clip-border rounded-[.95rem] border border-dashed border-stone-200 bg-white m-5">
+      <div
+        class="relative flex-[1_auto] flex flex-col break-words min-w-0 bg-clip-border rounded-[.95rem] border border-dashed border-stone-200 bg-white m-5">
         <!-- card body  -->
         <div class="flex-auto block py-8 px-9">
           <div>
-            <div class="mb-9">
+            <h1 class="mb-2 text-[1.75rem] font-semibold text-dark">Forests of Portugal</h1>
+            <p> This visualization-focused application means to provide a user-centric way of analysing and studying the
+              data associated to the forests of Portugal.</p>
+            <p> All data shown was collected from <a href="https://www.pordata.pt/subtema/portugal/floresta-474">PORDATA
+                Portugal Floresta-474</a>.
+            </p>
+          </div>
+          <div>
+            <div class="mb-9 py-5">
               <h1 class="mb-2 text-[1.75rem] font-semibold text-dark">Our Team</h1>
-              <span class="text-[1.15rem] font-medium text-muted"> This work was developed within the scope of the Information Visualization course in 2023. </span>
             </div>
             <div class="flex justify-center items-center content-center">
               <div class="flex flex-col mr-5 text-center mb-11 lg:mr-16">
                 <div class="inline-block mb-4 relative shrink-0 rounded-[.95rem]">
-                  <img class="inline-block shrink-0 rounded-[.95rem] w-[150px] h-[150px]" src="images/eu.png" alt="avarat image">
+                  <img class="inline-block shrink-0 rounded-[.95rem] w-[150px] h-[150px]" src="images/eu.png"
+                    alt="avarat image">
                 </div>
                 <div class="text-center">
-                  <a href="javascript:void(0)" class="text-dark font-semibold hover:text-primary text-[1.25rem] transition-colors duration-200 ease-in-out">Raquel Paradinha</a>
+                  <span
+                    class="text-dark font-semibold hover:text-primary text-[1.25rem] transition-colors duration-200 ease-in-out">
+                    Raquel Paradinha</span>
                   <span class="block font-medium text-muted">102491</span>
                   <span class="block font-medium text-muted">raquelparadinha@ua.pt</span>
-                  <a class="flex justify-center items-center" href="https://github.com/raquelparadinha" target="_blank" rel="noopener noreferrer">
+                  <a class="flex justify-center items-center" href="https://github.com/raquelparadinha" target="_blank"
+                    rel="noopener noreferrer">
                     <img src="images/github-mark.png" alt="GitHub logo" width="24" height="24">
-                  </a> 
+                  </a>
                 </div>
               </div>
               <div class="flex flex-col mr-5 text-center mb-11 lg:mr-16">
                 <div class="inline-block mb-4 relative shrink-0 rounded-[.95rem]">
-                  <img class="inline-block shrink-0 rounded-[.95rem] w-[150px] h-[150px]" src="images/manco.png" alt="avarat image">
+                  <img class="inline-block shrink-0 rounded-[.95rem] w-[150px] h-[150px]" src="images/manco.png"
+                    alt="avarat image">
                 </div>
                 <div class="text-center">
-                  <a href="javascript:void(0)" class="text-dark font-semibold hover:text-primary text-[1.25rem] transition-colors duration-200 ease-in-out">Miguel Matos</a>
+                  <span
+                    class="text-dark font-semibold hover:text-primary text-[1.25rem] transition-colors duration-200 ease-in-out">
+                    Miguel Matos</span>
                   <span class="block font-medium text-muted">103341</span>
                   <span class="block font-medium text-muted">miguelamatos@ua.pt</span>
-                  <a class="flex justify-center items-center" href="https://github.com/mankings" target="_blank" rel="noopener noreferrer">
+                  <a class="flex justify-center items-center" href="https://github.com/mankings" target="_blank"
+                    rel="noopener noreferrer">
                     <img src="images/github-mark.png" alt="GitHub logo" width="24" height="24">
-                  </a> 
+                  </a>
                 </div>
               </div>
             </div>
+            <p> This project was developed within the scope of the Information Visualization course in 2023. </p>
           </div>
         </div>
       </div>
     </div>
   </div>
-  </body>
+</body>
+
 </html>

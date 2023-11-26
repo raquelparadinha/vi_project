@@ -1,64 +1,57 @@
 <!DOCTYPE html>
 <html lang="en-US">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Forest</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script type="text/javascript" src="https://d3js.org/d3.v6.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
-    <script src="scripts/fires.js"></script>
-    <link rel="stylesheet" href="styles/chart.css">
-  </head>
-  <body class="bg-green-100">
-    <!-- Navbar -->
-    <div class="pt-4">
-      <nav
-      class="mx-auto block w-full max-w-screen-xl rounded-xl border border-white/80 bg-white bg-opacity-80 py-2 px-4 text-white shadow-md backdrop-blur-2xl backdrop-saturate-200 lg:px-8 lg:py-4"
-      >
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>Forests of Portugal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="text/javascript" src="https://d3js.org/d3.v6.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
+  <script src="scripts/fires.js"></script>
+  <link rel="stylesheet" href="styles/chart.css">
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+</head>
+
+<body class="bg-green-100">
+  <!-- Navbar -->
+  <div class="pt-4">
+    <nav
+      class="mx-auto block w-full max-w-screen-xl rounded-xl border border-white/80 bg-white bg-opacity-80 py-2 px-4 text-white shadow-md backdrop-blur-2xl backdrop-saturate-200 lg:px-8 lg:py-4">
       <div>
-        <div
-          class="container mx-auto flex items-center content-center justify-between text-green-900"
-        >
-          <a
-            href="index.html"
-            class="mr-4 block cursor-pointer py-1.5 font-sans text-sm font-normal leading-normal text-inherit antialiased hover:text-blue lg:mr-6 lg:py-2 lg:text-2"
-          >
-            <span>Forest</span>
+        <div class="container mx-auto flex items-center content-center justify-between text-green-900">
+          <a href="index.html"
+            class="mr-4 block cursor-pointer py-1.5 font-sans text-sm font-normal leading-normal text-inherit antialiased hover:text-blue lg:mr-6 lg:py-2 lg:text-2">
+            <span>Home</span>
           </a>
           <ul class="hidden items-center gap-6 lg:flex">
-            <li
-              class="block p-1 font-sans text-sm font-normal leading-normal text-inherit antialiased"
-            >
+            <li class="block p-1 font-sans text-sm font-normal leading-normal text-inherit antialiased">
               <a class="flex items-center" href="products_data.html"> Products Data </a>
             </li>
-            <li
-              class="block p-1 font-sans text-sm font-normal leading-normal text-inherit antialiased"
-            >
+            <li class="block p-1 font-sans text-sm font-normal leading-normal text-inherit antialiased">
               <a class="flex items-center" href="products_compare.html"> Products Compare </a>
             </li>
-            <li
-              class="block p-1 font-sans text-sm font-normal leading-normal text-inherit antialiased"
-            >
+            <li class="block p-1 font-sans text-sm font-normal leading-normal text-inherit antialiased">
               <a class="flex items-center" href="#"> Fires </a>
             </li>
           </ul>
         </div>
-        </div>
       </div>
-    </nav>
   </div>
-    <!-- End Navbar -->
+  </nav>
+  </div>
+  <!-- End Navbar -->
 
-    <!-- Content -->
-    <div class="center-wrapper">
-      <div id="chart-container">
-          <div id="chart" style="display: flex; justify-content: center; align-items: center;" class="pb-8"></div>
-          <!-- <div id="legend" class="pl-8"> </div> -->
-        </div>
+  <!-- Content -->
+  <div class="center-wrapper">
+    <div id="chart-container">
+      <div id="chart" style="display: flex; justify-content: center; align-items: center;" class="pb-8"></div>
+      <!-- <div id="legend" class="pl-8"> </div> -->
     </div>
-    <script>
-        scatterPlot();
-    </script>
-  </body>
+  </div>
+  <script>
+    scatterPlot();
+  </script>
+</body>
+
 </html>
