@@ -99,6 +99,7 @@ function visualizeScatterPlot(data) {
 
     // Create scatter plot points
     svg.selectAll('.scatter-point')
+        .style('z-index', 20)
         .data(allData)
         .enter()
         .append('circle')
@@ -107,25 +108,35 @@ function visualizeScatterPlot(data) {
         .attr('cx', d => xScale(d.fires))
         .attr('cy', d => yScale(d.burnedArea))
         .attr('r', 8)
-        .on('mouseover', function (d) {
+        .on('mouseover', function (event, d) {
             d3.select(this).transition()
                 .duration('2')
                 .attr('r', '10');
+    
+            // Display the tooltip
+            d3.select("#tooltip").style('opacity', 1)
+                .html(`Fires: ${d.fires}<br>Burned Area: ${d.burnedArea}<br>`)
+                .style('left', (event.pageX + 10) + 'px')
+                .style('top', (event.pageY + 10) + 'px');
         })
-        .on('mouseout', function (d) {
+        .on('mouseout', function () {
             d3.select(this).transition()
                 .duration('2')
                 .attr('r', '8');
+    
+            // Hide the tooltip
+            d3.select("#tooltip").style('opacity', 0);
         });
 
     // Add labels to the scatter points
     svg.selectAll('.label')
+        .style('z-index', 10)
         .data(allData)
         .enter()
         .append('text')
         .attr('class', 'label')
-        .attr('x', d => xScale(d.fires) - 15)
-        .attr('y', d => yScale(d.burnedArea) - 10)  // Adjust label position
+        .attr('x', d => xScale(d.fires) + 10)
+        .attr('y', d => yScale(d.burnedArea) + 4)  // Adjust label position
         .attr('fill', d => d.color)
         .text(d => d.years);
 
