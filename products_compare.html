@@ -11,6 +11,30 @@
   <script src="scripts/products_compare.js"></script>
   <link rel="stylesheet" href="styles/chart.css">
   <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <style>
+    /* Add your custom styles here */
+  .bar {
+    stroke: none;
+  }
+
+  .bar-export {
+    fill: green;
+  }
+
+  .bar-import {
+    fill: rgb(240, 29, 29);
+  }
+
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: #000;
+  }
+
+  .axis text {
+    font-size: 12px;
+  }
+  </style>
 </head>
 
 <body class="bg-green-100">
@@ -143,7 +167,29 @@
     </div>
   </div>
   <script>
-    radarPlot(2013);
+    // Function to get the default selected product
+    function getDefaultSelectedYear() {
+      const defaultSelectedRadio = document.querySelector('input[name="years"]:checked');
+      return defaultSelectedRadio ? defaultSelectedRadio.value : "2013";
+    }
+
+    // Example: Attach a click event listener to a button with ID 'selectProductButton'
+    const selectYearButton = document.getElementById('yearsButton');
+    selectYearButton.addEventListener('click', function () {
+      // Get the selected product value
+      const selectedYear = document.querySelector('input[name="years"]:checked').value;
+
+      // Call the lineChart function with the selected product
+      radarPlot(selectedYear);
+    });
+
+    // Trigger the lineChart function with the default selected product on page load
+    document.addEventListener('DOMContentLoaded', function () {
+      const defaultYear = getDefaultSelectedYear();
+      if (defaultYear) {
+        radarPlot(defaultYear);
+      }
+    });
   </script>
 </body>
 

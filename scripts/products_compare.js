@@ -30,7 +30,7 @@ function radarPlot(year) {
             });
 
             // Continue with your visualization
-            visualizeRadarPlot(datasets, ['Export', 'Import'], year);
+            visualizeRadarPlot(datasets, ['Export', 'Import'], parseInt(year));
         })
         .catch(error => {
             console.error('Error fetching data:', error);
@@ -38,20 +38,91 @@ function radarPlot(year) {
 }
 
 function visualizeRadarPlot(datasets, titles, year) {
-    const svg = d3.select("#chart");
+
+    const yearIndex = datasets[0].findIndex(row => row[0] === year);
+    console.log('Year index: ', yearIndex);
+
+    const exportData = datasets[0][yearIndex].slice(2);
+    const importData = datasets[1][yearIndex].slice(2);
+    console.log('Export data: ', exportData);
+
+    const categories = datasets[0][0].slice(2); 
 
     // Define chart dimensions
-    const width = +svg.attr("width");
-    const height = +svg.attr("height");
+    const margin = { top: 40, right: 10, bottom: 100, left: 10 };
+    const width = 1500 - margin.left - margin.right;
+    const height = 700 - margin.top - margin.bottom;
 
-    // Set up the radar chart properties
-    const margin = { top: 50, right: 50, bottom: 50, left: 50 };
-    const chartWidth = width - margin.left - margin.right;
-    const chartHeight = height - margin.top - margin.bottom;
-    const radius = Math.min(chartWidth, chartHeight) / 2;
+    // Create an SVG container
+    const svg = d3.select("#chart")
+        .append("svg")
+        .attr("width", width + margin.left + margin.right + 40)
+        .attr("height", height + margin.top + margin.bottom + 10)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    // Set up scales
+    const xScale = d3.scaleBand()
+        .domain(categories)
+        .range([0, width])
+        .padding(0.1);
+
+    const yScale = d3.scaleLinear()
+        .domain([0, d3.max(exportData.concat(importData))])
+        .range([height, 0]);
 
     // Create a group for the chart
     const chartGroup = svg.append("g")
-        .attr("transform", `translate(${margin.left + chartWidth / 2}, ${margin.top + chartHeight / 2})`);
-}
+        .attr("transform", `translate(50, 50)`);
 
+    // Add bars for exportation
+    chartGroup.selectAll(".bar-export")
+        .data(exportData)
+        .enter().append("rect")
+        .attr("class", "bar bar-export")
+        .attr("x", (d, i) => xScale(categories[i]) + xScale.bandwidth() / 4) // Adjust the position based on your preference
+        .attr("y", d => yScale(d))
+        .attr("width", xScale.bandwidth() / 2) // Adjust the width based on your preference
+        .attr("height", d => height - yScale(d));
+
+    // Add bars for importation
+    chartGroup.selectAll(".bar-import")
+        .data(importData)
+        .enter().append("rect")
+        .attr("class", "bar bar-import")
+        .attr("x", (d, i) => xScale(categories[i]) + xScale.bandwidth() / 2) // Adjust the position based on your preference
+        .attr("y", d => yScale(d))
+        .attr("width", xScale.bandwidth() / 2) // Adjust the width based on your preference
+        .attr("height", d => height - yScale(d));
+
+    // Add axes and labels
+    const xAxis = d3.axisBottom(xScale);
+    const yAxis = d3.axisLeft(yScale);
+
+    chartGroup.append("g")
+        .attr("class", "x-axis")
+        .attr("transform", `translate(0, ${height})`)
+        .call(xAxis);
+
+    chartGroup.append("g")
+        .attr("class", "y-axis")
+        .call(yAxis);
+
+    // Add labels for each bar
+    chartGroup.selectAll(".bar-label")
+        .data(categories)
+        .enter().append("text")
+        .attr("class", "bar-label")
+        .attr("x", (d, i) => xScale(categories[i]) + xScale.bandwidth() / 2)
+        .attr("y", d => yScale(0) + 20) // Adjust the y position based on your preference
+        .attr("text-anchor", "middle");
+
+
+    // Add title
+    svg.append("text")
+        .attr("x", width / 2)
+        .attr("y", 0 - margin.top / 2)
+        .attr("text-anchor", "middle")
+        .style("font-size", "16px")
+        .text(`Comparison of Exportation, Importation and Balance (Thousands of Euros)`);
+}
