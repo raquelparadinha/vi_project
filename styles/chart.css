@@ -4,6 +4,7 @@
     justify-content: center;
     align-items: center;
     height: 85vh;
+    flex-direction: column;
 }
 
 /* Container for chart and dropdown */
@@ -19,6 +20,18 @@
     border-radius: 8px;
 }
 
+/* #chart-description {
+    display: flex;
+    flex-direction: line;
+    align-items: center;
+    padding: 20px;
+    border: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+} */
+
 /* Style for the chart container */
 #chart {
     background-color: #fff;
@@ -26,4 +39,10 @@
     padding: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+}
+
+/* Style for the chart description */
+#chart-description {
+    text-align: center;
+    margin-top: 10px; /* Adjust the margin based on your preference */
 }
