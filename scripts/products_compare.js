@@ -124,5 +124,5 @@ function visualizeRadarPlot(datasets, titles, year) {
         .attr("y", 0 - margin.top / 2)
         .attr("text-anchor", "middle")
         .style("font-size", "16px")
-        .text(`Comparison of Exportation, Importation and Balance (Thousands of Euros)`);
+        .text(`Comparison of Exportation and Importation of Forest Products in ${year}`);
 }
