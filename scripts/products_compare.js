@@ -83,7 +83,26 @@ function visualizeRadarPlot(datasets, titles, year) {
         .attr("x", (d, i) => xScale(categories[i]) + xScale.bandwidth() / 4) // Adjust the position based on your preference
         .attr("y", d => yScale(d))
         .attr("width", xScale.bandwidth() / 2) // Adjust the width based on your preference
-        .attr("height", d => height - yScale(d));
+        .attr("height", d => height - yScale(d))
+        .on('mouseover', function (event, d) {
+            d3.select(this).transition()
+                .duration('2')
+                .attr('r', '10');
+    
+            // Display the tooltip
+            d3.select("#tooltip").style('opacity', 1)
+                .html(`<strong>${d}</strong>`)
+                .style('left', (event.pageX + 10) + 'px')
+                .style('top', (event.pageY + 10) + 'px');
+        })
+        .on('mouseout', function () {
+            d3.select(this).transition()
+                .duration('2')
+                .attr('r', '8');
+    
+            // Hide the tooltip
+            d3.select("#tooltip").style('opacity', 0);
+        });
 
     // Add bars for importation
     chartGroup.selectAll(".bar-import")
@@ -93,8 +112,26 @@ function visualizeRadarPlot(datasets, titles, year) {
         .attr("x", (d, i) => xScale(categories[i]) + xScale.bandwidth() / 2) // Adjust the position based on your preference
         .attr("y", d => yScale(d))
         .attr("width", xScale.bandwidth() / 2) // Adjust the width based on your preference
-        .attr("height", d => height - yScale(d));
-
+        .attr("height", d => height - yScale(d))
+        .on('mouseover', function (event, d) {
+            d3.select(this).transition()
+                .duration('2')
+                .attr('r', '10');
+    
+            // Display the tooltip
+            d3.select("#tooltip").style('opacity', 1)
+                .html(`<strong>${d}</strong>`)
+                .style('left', (event.pageX + 10) + 'px')
+                .style('top', (event.pageY + 10) + 'px');
+        })
+        .on('mouseout', function () {
+            d3.select(this).transition()
+                .duration('2')
+                .attr('r', '8');
+    
+            // Hide the tooltip
+            d3.select("#tooltip").style('opacity', 0);
+        });
     // Add axes and labels
     const xAxis = d3.axisBottom(xScale);
     const yAxis = d3.axisLeft(yScale);
